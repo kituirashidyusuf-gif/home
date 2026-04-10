@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Rashid Kitui's Family · Our Home & Heritage</title>
+  <!-- Google Fonts & simple icons (Font Awesome) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fef9ef;
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #2d2f36;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* animations keyframes */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      0% {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes gentlePulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.02);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -200% 0;
+      }
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    @keyframes borderGlow {
+      0% {
+        box-shadow: 0 0 0 0 rgba(231, 180, 44, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 8px rgba(231, 180, 44, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(231, 180, 44, 0);
+      }
+    }
+
+    /* utility classes for scroll animation */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
+    }
+
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* staggered children animations */
+    .stagger-children > * {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+    .stagger-children > *:nth-child(2) { animation-delay: 0.15s; }
+    .stagger-children > *:nth-child(3) { animation-delay: 0.25s; }
+    .stagger-children > *:nth-child(4) { animation-delay: 0.35s; }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 20px;
+      object-fit: cover;
+      transition: transform 0.4s ease, filter 0.3s ease;
+    }
+
+    img:hover {
+      transform: scale(1.02);
+      filter: brightness(1.02);
+    }
+
+    /* container & grid */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+    }
+
+    /* header with sticky and subtle animation */
+    header {
+      background: #2e5a4f;
+      color: white;
+      padding: 1rem 0;
+      box-shadow: 0 8px 14px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo h1 {
+      font-size: 1.7rem;
+      letter-spacing: -0.5px;
+      animation: fadeInRight 0.8s ease;
+    }
+
+    .logo p {
+      font-size: 0.85rem;
+      opacity: 0.85;
+      animation: fadeInRight 0.8s ease 0.1s both;
+    }
+
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      list-style: none;
+      margin-top: 0.6rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #e7b42c;
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    nav a:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+    /* Hamburger menu */
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    color: white;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #2e5a4f;
+    margin-top: 1rem;
+    border-radius: 12px;
+    padding: 1rem;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  nav ul li {
+    padding: 0.5rem 0;
+  }
+}
+    /* sections */
+    section {
+      margin: 3rem 0;
+      scroll-margin-top: 90px;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 1.8rem;
+    }
+    .member-card, .event-card, .blog-card {
+      background: white;
+      border-radius: 32px;
+      padding: 1.2rem;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    .member-card:hover, .blog-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+    }
+    .member-img {
+      width: 100%;
+      height: 200px;
+      background: #d9e3dc;
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #2e5a4f;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .member-img img {
+      transition: transform 0.5s ease;
+    }
+    .member-card:hover .member-img img {
+      transform: scale(1.05);
+    }
+    h2 {
+      font-size: 2rem;
+      border-left: 6px solid #e7b42c;
+      padding-left: 1rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      animation: fadeInLeft 0.7s ease;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin: 0.5rem 0;
+      transition: color 0.3s;
+    }
+    .badge {
+      background: #f0e5cf;
+      border-radius: 40px;
+      padding: 0.2rem 0.8rem;
+      font-size: 0.75rem;
+      display: inline-block;
+      margin: 0.3rem 0;
+      transition: all 0.3s ease;
+    }
+    .badge:hover {
+      background: #e7b42c;
+      transform: scale(1.05);
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .gallery-item {
+      background: #eae2d7;
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #5b4b3a;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      animation: fadeInUp 0.6s ease backwards;
+      animation-delay: calc(0.05s * var(--i, 1));
+    }
+    .gallery-item:hover {
+      transform: scale(1.02) translateY(-5px);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+    }
+    .gallery-item img, .gallery-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* calendar simple table */
+    .calendar-events {
+      background: #fff7ef;
+      border-radius: 32px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.7s ease;
+    }
+    .event-item {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      border-bottom: 1px solid #e2d9cf;
+      padding: 0.8rem 0;
+      transition: all 0.3s ease;
+      animation: fadeInRight 0.5s ease backwards;
+      animation-delay: calc(0.07s * var(--order, 1));
+    }
+    .event-item:hover {
+      background: #fff0e0;
+      padding-left: 0.8rem;
+      border-radius: 40px;
+      transform: translateX(5px);
+    }
+    .event-date {
+      font-weight: bold;
+      background: #e7b42c;
+      padding: 0.2rem 0.8rem;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      color: #2d2f36;
+      transition: all 0.3s;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ddd;
+      border-radius: 60px;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: #e7b42c;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(231, 180, 44, 0.2);
+      transform: scale(1.01);
+    }
+    .contact-form textarea {
+      border-radius: 28px;
+    }
+    button {
+      background: #2e5a4f;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 60px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    button:hover {
+      background: #1e4038;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      animation: gentlePulse 0.4s ease;
+    }
+    button:active {
+      transform: translateY(1px);
+    }
+    footer {
+      background: #2d2f36;
+      color: #ccc;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .privacy-note {
+      background: #fef3e0;
+      border-radius: 32px;
+      padding: 1rem 2rem;
+      border-left: 6px solid #e7b42c;
+      margin-top: 1rem;
+      transition: all 0.4s ease;
+      animation: borderGlow 2s infinite;
+    }
+    @media (max-width: 700px) {
+      .logo-area {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      .container {
+        padding: 0.8rem 1rem;
+      }
+    }
+    .role {
+      font-style: italic;
+      color: #7a6a5c;
+    }
+    i.fa, i.far, i.fas {
+      margin-right: 0.3rem;
+    }
+    /* floating decoration */
+    .floating-icon {
+      animation: float 4s ease-in-out infinite;
+      display: inline-block;
+    }
+    /* Contact section responsive grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font-size: 1rem;
+}
+
+@media (max-width: 500px) {
+  .contact-form input,
+  .contact-form textarea {
+    padding: 0.7rem;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+  </style>
+</head>
+<body>
+<header>
+  <div class="container logo-area">
+    <div class="logo">
+      <h1><i class="fas fa-tree"></i> Rashid Kitui's Family</h1>
+      <p>Rooted in love · Growing together</p>
+    </div>
+      <nav>
+  <div class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <ul id="navMenu">
+    <li><a href="#story">📖 Story</a></li>
+    <li><a href="#profiles">👥 Profiles</a></li>
+    <li><a href="#gallery">📸 Gallery</a></li>
+    <li><a href="#updates">📰 Updates</a></li>
+    <li><a href="#calendar">📅 Calendar</a></li>
+    <li><a href="#growth">🌱 Growth</a></li>
+    <li><a href="#contact">💬 Contact</a></li>
+    <li><a href="#values">🌍 Values</a></li>
+  </ul>
+</nav>
+  </div>
+</header>
+
+<main class="container">
+  <!-- 1. Family Identity & Story -->
+  <section id="story">
+    <h2><i class="fas fa-home"></i> Family Identity & Story</h2>
+    <div style="background: #ffffff; border-radius: 32px; padding: 2rem; box-shadow: 0 8px 20px rgba(0,0,0,0.03);">
+      <p style="font-size: 1.2rem;">✨ <strong>Welcome to our digital hearth.</strong> The Rashid Kitui family began with Elena and David’s dream in a small town in Kampala. Today, we are a close-knit family brought together by shared moments, meaningful traditions, and a love for spending time with one another. Our core values are kindness, curiosity, and togetherness, and each member contributes something special to who we are. This space is where we celebrate everyday moments—from favorite recipes to memorable family trips. Thank you for being part of our story. ❤️</p>
+      <div class="privacy-note" style="margin-top: 1rem;">
+        <i class="fas fa-lock"></i> <strong>Private family space</strong> — some sections are password-protected for extended family only. Please contact us for access.
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Profiles of Family Members -->
+  <section id="profiles">
+    <h2><i class="fas fa-users"></i> Meet My Family</h2>
+    <div class="card-grid">
+      <div class="member-card">
+        <div class="member-img"><img src="images/mum.jpg" alt="Elena Kitui"></div>
+        <h3>Elena Kitui <span class="role">(Matriarch / Storyteller)</span></h3>
+        <p><i class="fas fa-heart"></i> Loves gardening, cooking, and preserving family recipes. <br>🏆 Best sourdough baker & community volunteer.</p>
+        <div class="badge"><i class="fas fa-palette"></i> Hobbies: Painting, Swimming</div>
+      </div>
+      <div class="member-card">
+        <div class="member-img"><img src="images/dad.jpg" alt="Rashid Kitui"></div>
+        <h3>Rashid Kitui <span class="role">(Papa / Anchor)</span></h3>
+        <p><i class="fas fa-book"></i> IT teacher, amateur astronomer. <br>📚 Role: Keeping traditions alive & family finances.</p>
+        <div class="badge"><i class="fas fa-glasses"></i> Interests: Chess, listening to music</div>
+      </div>
+      <div class="member-card">
+        <div class="member-img"><img src="images/girl.jpg" alt="Maya Kitui"></div>
+        <h3>Maya Kitui <span class="role">(Eldest / Dreamer)</span></h3>
+        <p><i class="fas fa-microphone-alt"></i> 10, musician & debate captain. Achievements: state poetry champion. <br>🎯 Learning guitar & coding.</p>
+        <div class="badge"><i class="fas fa-music"></i> Piano · Robotics</div>
+      </div>
+      <div class="member-card">
+        <div class="member-img"><img src="images/boy.jpg" alt="Leo Kitui"></div>
+        <h3>Leo Kitui <span class="role">(Little Adventurer)</span></h3>
+        <p><i class="fas fa-dragon"></i> Age 5, loves dinosaurs, soccer and building forts. <br>🏅 School mathlete & junior gardener.</p>
+        <div class="badge"><i class="fas fa-futbol"></i> Soccer · Dino fossils</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Photo & Video Gallery (everyday moments & trips) -->
+  <section id="gallery">
+    <h2><i class="fas fa-camera-retro"></i> Gallery · Memory Lane</h2>
+    <div class="gallery">
+      <div class="gallery-item"><img src="images/beach.jpg" alt="Family beach trip"></div>
+      <div class="gallery-item"><img src="images/images.jfif" alt="Birthday celebration"></div>
+      <div class="gallery-item"><img src="images/adventure.jpg" alt="Camping adventure"></div>
+      <div class="gallery-item">
+        <video controls width="100%" poster="images/happy-family-young-african-american-parents-having-fun-with-their-little-daughter-at-home-cheerful-black-millennial-mom-and-dad-playing-together-in-living-room-and-laughing-copy-space-photo.jpg">
+          <source src="#" type="video/mp4">
+          Your browser doesn't support video — family picnic memory.
+        </video>
+      </div>
+    </div>
+    <p style="text-align: center; font-size:0.9rem"><i class="fas fa-download"></i> Click images to expand (low-bandwidth optimized placeholders; replace with actual media).</p>
+  </section>
+
+  <!-- 4. News & Updates (Family Blog / notice board) -->
+  <section id="updates">
+    <h2><i class="fas fa-newspaper"></i> Family News & Updates</h2>
+    <div class="card-grid">
+      <div class="blog-card">
+        <i class="fas fa-birthday-cake" style="font-size: 2rem; color:#e7b42c;"></i>
+        <h3>🎂 Grandma Rose turns 78!</h3>
+        <p><small>April 12, 2026</small><br>Virtual celebration this Sunday at 3pm. Send video messages to Elena. Cake design: lemon drizzle! 🍋</p>
+      </div>
+      <div class="blog-card">
+        <i class="fas fa-graduation-cap"></i>
+        <h3>Maya's Scholarship Achievement</h3>
+        <p><small>April 5, 2026</small><br>Maya awarded Young Writers Fellowship! So proud of her dedication. 🎉 Read her poem "Roots" in our family library.</p>
+      </div>
+      <div class="blog-card">
+        <i class="fas fa-toolbox"></i>
+        <h3>🏡 New garden project</h3>
+        <p><small>March 28, 2026</small><br>We're planting a native pollinator garden — join us next Saturday for the first dig! Kids welcome.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Events & Calendar (shared coordination) -->
+  <section id="calendar">
+    <h2><i class="fas fa-calendar-alt"></i> Family Calendar</h2>
+    <div class="calendar-events">
+      <div class="event-item"><span class="event-date">Apr 18</span><span><strong>🌿 Family Fun Day</strong> – Kitui's garden, 10am</span></div>
+      <div class="event-item"><span class="event-date">Apr 24</span><span><strong>🎻 Maya's Orchestra Concert</strong> – City Hall 7pm</span></div>
+      <div class="event-item"><span class="event-date">May 05</span><span><strong>Family game night</strong> (zoom & in-person)</span></div>
+      <div class="event-item"><span class="event-date">May 20</span><span><strong>🏆 Leo's soccer finals</strong> – support our champ!</span></div>
+      <div class="event-item"><span class="event-date">Jun 12</span><span><strong>📅 Annual Kitui Reunion (Potluck + stories)</strong> – book your travel!</span></div>
+    </div>
+    <p style="margin-top: 1rem;"><i class="fas fa-envelope"></i> Want to add an event? Contact family admin → calendar@mitchellfamily.org</p>
+  </section>
+
+  <!-- 6. Education & Growth Section -->
+  <section id="growth">
+    <h2><i class="fas fa-chalkboard-user"></i> Education & Growth</h2>
+    <div class="contact-grid">
+      <div style="flex:1; background:#fff; border-radius: 28px; padding: 1.5rem;">
+        <i class="fas fa-child" style="font-size:2rem"></i>
+        <h3>Children's progress</h3>
+        <p>📖 Maya: AP Literature & coding bootcamp (JS). <br>⚽ Leo: reading level advanced, science fair project on renewable energy.</p>
+        <hr>
+        <h3>📚 Study resources we love</h3>
+        <ul style="margin-left: 1rem;">
+          <li>Khan Academy & Duolingo (family challenge ongoing)</li>
+          <li>Monthly “Family Book Club” – currently: <em>The House in the Cerulean Sea</em></li>
+          <li>Skill-building: woodworking with David, calligraphy with Elena</li>
+        </ul>
+      </div>
+      <div style="flex:1; background:#fff; border-radius: 28px; padding: 1.5rem;">
+        <i class="fas fa-seedling"></i>
+        <h3>Inspirational corner</h3>
+        <p>✨ <strong>"Our family is a circle of strength and learning."</strong> Every Friday we share one thing we learned. New skill spotlight: Leo is learning sign language, Maya practices digital art, and David takes astronomy course. </p>
+        <div class="badge">🌱 Growth mindset challenge: try one new recipe each week</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Communication & Contact Area + Privacy note -->
+<section id="contact">
+  <h2><i class="fas fa-comment-dots"></i> Contact & Circle</h2>
+
+  <div class="contact-container">
+    
+    <!-- Contact Form -->
+    <div class="contact-card">
+      <h3>✉️ Send us a message</h3>
+      <form class="contact-form" id="familyContactForm">
+        <input type="text" placeholder="Your name" id="contactName" required>
+        <input type="email" placeholder="Email address" id="contactEmail" required>
+        <textarea rows="3" placeholder="Share your love, updates or request..." id="contactMsg"></textarea>
+        <button type="submit">
+          <i class="fas fa-paper-plane"></i> Send (family only)
+        </button>
+        <p id="formFeedback"></p>
+      </form>
+    </div>
+
+    <!-- Privacy Section -->
+    <div class="contact-card">
+      <h3><i class="fas fa-shield-alt"></i> Privacy & Security</h3>
+      <p>
+        🔐 This family website is protected. Personal photos and member details 
+        are only visible to logged-in family members (password wall for private areas). 
+        We never share data with third parties. To request access, email 
+        <strong>privacy@mitchellfamily.org</strong>.
+      </p>
+      <div class="privacy-note">
+        <i class="fas fa-key"></i> 
+        <strong>Password-protected sections:</strong> full gallery & contact list 
+        available upon verified request. Low-bandwidth mode enabled by default.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <!-- 9. Cultural & Social Values + 10. Community & Social Responsibility combined -->
+  <section id="values">
+    <h2><i class="fas fa-hand-sparkles"></i> Our Heritage & Community Heart</h2>
+    <div style="background: #fff6e8; border-radius: 32px; padding: 1.8rem;">
+      <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+        <div style="flex:1">
+          <i class="fas fa-globe-americas" style="font-size: 2rem;"></i>
+          <h3>Cultural traditions</h3>
+          <p>A Christian home guided by prayer, gratitude, and respect. We celebrate holy days like Christmas and Easter, enjoy uplifting gospel music, and nurture communication in English, Luganda, and Swahili.</p>
+        </div>
+        <div style="flex:1">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h3>Social Responsibility</h3>
+          <p>🤝 Rashid Kitui's We believe in giving back to our community through kindness, support, and small acts that make a difference. As a family, we encourage helping others, sharing what we have, and promoting positive values in society.</p>
+        </div>
+      </div>
+      <div style="margin-top: 1rem; background:#e8ddcf; border-radius: 28px; padding: 1rem;">
+        <i class="fas fa-hands-helping"></i> <strong>Community Spotlight:</strong> This year we raised $ 200 for road construction in our village. Proud to share our family values beyond our home.
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p><i class="fas fa-leaf"></i> The Rashid Kitui's Family — where every story matters.  |  🛡️ Private site, family approved  |  📍 Built with love & accessibility</p>
+    <p style="margin-top: 0.8rem; font-size:0.85rem;">✨ Low-bandwidth mode: optimized images & simple layout — works on any phone & slow connections ✨</p>
+  </div>
+</footer>
+
+<!-- simple JS for contact form simulation & basic interactive privacy note -->
+<script>
+  (function() {
+    // Contact form simulation with animation feedback
+    const form = document.getElementById('familyContactForm');
+    const feedback = document.getElementById('formFeedback');
+    if(form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('contactName').value.trim();
+        const email = document.getElementById('contactEmail').value.trim();
+        const msg = document.getElementById('contactMsg').value.trim();
+        if(name === "" || email === "" || msg === "") {
+          feedback.innerHTML = "⚠️ Please fill all fields before sending (family only).";
+          feedback.style.color = "#b13e3e";
+          feedback.style.animation = "gentlePulse 0.4s";
+          return;
+        }
+        if(!email.includes('@')) {
+          feedback.innerHTML = "📧 Please enter a valid email address.";
+          return;
+        }
+        feedback.innerHTML = `✅ Thanks ${name}! Your message has been privately sent to the family committee. We'll respond within 2-3 days.`;
+        feedback.style.color = "#2e5a4f";
+        form.reset();
+        setTimeout(() => {
+          feedback.innerHTML = "";
+        }, 4000);
+      });
+    }
+
+    // Intersection Observer for scroll animations
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('animated');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+    animatedElements.forEach(el => observer.observe(el));
+
+    // Additional interactive hover animations on gallery
+    const galleryItems = document.querySelectorAll('.gallery-item img, .gallery-item video');
+    galleryItems.forEach(item => {
+      item.addEventListener('click', function() {
+        if(this.tagName === 'IMG' && this.src.includes('placehold')) {
+          alert("🖼️ This is a placeholder image. In the real family website, you’ll see actual cherished memories! (low-bandwidth optimized)");
+        } else if(this.tagName === 'VIDEO') {
+          alert("🎬 Family video memory — please replace source with actual family clip. We prioritize privacy & offline backups.");
+        }
+      });
+    });
+    // Responsive menu toggle
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navMenu');
+
+if(menuToggle) {
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+}
+
+    // assign order for calendar items dynamically if missing
+    document.querySelectorAll('.event-item').forEach((item, idx) => {
+      if(!item.style.getPropertyValue('--order')) {
+        item.style.setProperty('--order', idx+1);
+      }
+    });
+    console.log("Mitchell Family Website: Animations active + accessible design. All family data protected.");
+  })();
+</script>
+</body>
+</html>
